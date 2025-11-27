@@ -167,6 +167,49 @@ const authController = {
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
+  },
+
+  async updateUser(req, res) {
+    try {
+      const { id } = req.params;
+      const { name, email, role } = req.body;
+
+      // Validações
+      if (!name || name.trim() === '') {
+        return res.status(400).json({ error: 'Nome é obrigatório' });
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return res.status(400).json({ error: 'Email inválido' });
+      }
+
+      if (role && !['aluno', 'professor', 'admin'].includes(role)) {
+        return res.status(400).json({ error: 'Função inválida' });
+      }
+
+      // Verificar se email já existe em outro usuário
+      const emailExists = await prisma.user.findFirst({
+        where: {
+          email,
+          NOT: { id: parseInt(id) }
+        }
+      });
+
+      if (emailExists) {
+        return res.status(400).json({ error: 'Email já está em uso' });
+      }
+
+      const user = await prisma.user.update({
+        where: { id: parseInt(id) },
+        data: { name, email, role }
+      });
+
+      const { password: _, ...userWithoutPassword } = user;
+      return res.json(userWithoutPassword);
+    } catch (error) {
+      console.error('Erro ao atualizar usuário:', error);
+      return res.status(500).json({ error: error.message });
+    }
   }
 };
 

@@ -18,5 +18,6 @@ router.post('/refresh-token', authController.refreshToken);
 
 // Rota para listar usuários
 router.get('/users', authMiddleware, authController.listUsers);
+router.put('/users/:id', authMiddleware, authController.updateUser);
 
 export default router;
