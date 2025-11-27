@@ -16,4 +16,7 @@ router.get('/me', authMiddleware, authController.me);
 // Rota para renovar token
 router.post('/refresh-token', authController.refreshToken);
 
+// Rota para listar usuários
+router.get('/users', authMiddleware, authController.listUsers);
+
 export default router;

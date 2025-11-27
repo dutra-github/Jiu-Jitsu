@@ -13,8 +13,10 @@ router.put('/:id', AlunoController.atualizarAluno);
 router.delete('/:id', AlunoController.removerAluno);
 
 // Rotas específicas para graduação
+router.get('/aptos-graduacao', AlunoController.listarAptosGraduacao);
 router.post('/:id/aula', AlunoController.registrarAula);
 router.put('/:id/graduacao', AlunoController.atualizarGraduacao);
+router.put('/:id/graduar', AlunoController.graduarAluno);
 router.get('/:id/historico', AlunoController.obterHistorico);
 
 export default router;

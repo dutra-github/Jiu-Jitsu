@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { models } from '../database.js';
-const { User } = models;
+import { prisma } from '../database.js';
 
 export default async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -12,15 +11,18 @@ export default async (req, res, next) => {
   const [, token] = authHeader.split(' ');
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
     
-    const user = await User.findByPk(decoded.id);
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id }
+    });
+    
     if (!user) {
       return res.status(401).json({ error: 'Usuário não encontrado' });
     }
 
     req.userId = decoded.id;
-    req.userTipo = decoded.tipo;
+    req.userRole = decoded.role || 'aluno';
 
     return next();
   } catch (error) {

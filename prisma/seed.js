@@ -9,12 +9,13 @@ async function main() {
   // Criar usuário admin
   const adminPassword = await bcrypt.hash('admin123', 8);
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@example.com' },
+    where: { email: 'admin@jiujitsu.com' },
     update: {},
     create: {
       name: 'Administrador',
-      email: 'admin@example.com',
-      password: adminPassword
+      email: 'admin@jiujitsu.com',
+      password: adminPassword,
+      role: 'admin'
     }
   });
   console.log('Usuário admin criado:', admin.email);
@@ -37,11 +38,12 @@ async function main() {
     where: { email: 'aluno1@example.com' },
     update: {},
     create: {
+      matricula: '2711202501',
       nome: 'João Silva',
       email: 'aluno1@example.com',
       dataNascimento: new Date('1990-01-15'),
       telefone: '(11) 98765-4321',
-      faixa: 'azul',
+      faixa: 'Azul',
       grau: 2,
       dataInicio: new Date('2020-03-10'),
       ativo: true
@@ -53,11 +55,12 @@ async function main() {
     where: { email: 'aluno2@example.com' },
     update: {},
     create: {
+      matricula: '2711202502',
       nome: 'Maria Oliveira',
       email: 'aluno2@example.com',
       dataNascimento: new Date('1995-07-22'),
       telefone: '(11) 91234-5678',
-      faixa: 'branca',
+      faixa: 'Branca',
       grau: 4,
       dataInicio: new Date('2022-01-05'),
       ativo: true

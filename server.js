@@ -4,6 +4,11 @@ import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import alunoRoutes from './routes/alunoRoutes.js';
 import metricasRoutes from './routes/metricasRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import professorRoutes from './routes/professorRoutes.js';
+import aulaRoutes from './routes/aulaRoutes.js';
+import tipoAulaRoutes from './routes/tipoAulaRoutes.js';
+import arteMarcialRoutes from './routes/arteMarcialRoutes.js';
 
 const app = express();
 const prisma = new PrismaClient();
@@ -20,7 +25,12 @@ app.use(cors({
 app.use(express.json());
 
 // Rotas
+app.use('/api/auth', authRoutes);
 app.use('/api/alunos', alunoRoutes);
+app.use('/api/professores', professorRoutes);
+app.use('/api/aulas', aulaRoutes);
+app.use('/api/tipos-aulas', tipoAulaRoutes);
+app.use('/api/artes-marciais', arteMarcialRoutes);
 app.use('/api/metricas', metricasRoutes);
 
 // Rota de teste
@@ -34,6 +44,7 @@ app.get('/api', (req, res) => {
     status: 'ok', 
     message: 'API do Sistema de Gerenciamento para Academias de Jiu-Jitsu',
     endpoints: [
+      '/api/auth',
       '/api/alunos',
       '/api/metricas',
       '/api/dashboard',

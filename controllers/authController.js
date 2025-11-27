@@ -149,6 +149,24 @@ const authController = {
       console.error('Erro ao renovar token:', error);
       return res.status(400).json({ error: 'Erro ao renovar token' });
     }
+  },
+
+  async listUsers(req, res) {
+    try {
+      const users = await prisma.user.findMany({
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          createdAt: true
+        },
+        orderBy: { name: 'asc' }
+      });
+      return res.json(users);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
   }
 };
 

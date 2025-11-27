@@ -4,6 +4,7 @@
 */
 
 /* Remover qualquer elemento de usuário no topo direito */
+/* COMENTADO - estava escondendo a página de login inteira
 [data-testid="user-info"],
 [class*="user-info"],
 [class*="user-profile"],
@@ -26,14 +27,17 @@
   overflow: hidden !important;
   pointer-events: none !important;
 }
+*/
 
 /* Remover todos os links e botões de login/logout */
+/* COMENTADO - estava escondendo a página de login inteira
 a[href*="login"],
 a[href*="logout"],
 button[data-action*="login"],
 button[data-action*="logout"] {
   display: none !important;
 }
+*/
 
 /* Limpar o cabeçalho e garantir que seja centralizado */
 .header {

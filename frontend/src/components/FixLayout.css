@@ -9,6 +9,7 @@
 }
 
 /* Remove qualquer elemento com "Usuário" no texto */
+/* COMENTADO - estava causando problemas
 *[title*="Usuário"],
 *[class*="usuario"],
 *[class*="user"],
@@ -16,6 +17,7 @@
 *[class*="auth"] {
   display: none !important;
 }
+*/
 
 /* Garante que o cabeçalho não tenha elementos na direita ou esquerda */
 .header {

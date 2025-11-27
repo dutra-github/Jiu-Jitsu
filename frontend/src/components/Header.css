@@ -10,8 +10,10 @@
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .header-title {
@@ -19,5 +21,37 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
-  text-align: center;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-user span {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.btn-logout {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+}
+
+.btn-logout i {
+  font-size: 1rem;
 }

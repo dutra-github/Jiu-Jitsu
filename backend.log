@@ -1,0 +1,22 @@
+npm warn config init.module Use `--init-module` instead.
+
+> jiu-jitsu-management@1.0.0 dev
+> nodemon server.js
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+Erro: Porta 3200 já está em uso.
+Tente:
+1. Usar uma porta diferente configurando a variável PORT
+2. Encerrar o processo que está usando a porta 3200
+3. Esperar alguns segundos e tentar novamente
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting child process[39m
+[32m[nodemon] starting `node server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m

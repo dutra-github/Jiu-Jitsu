@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../contexts/AuthContext'
 import './Register.css'
 
 /**
@@ -62,57 +62,54 @@ const Register = () => {
 
   // Submissão do formulário
   const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    if (!validateForm()) {
-      return
+    e.preventDefault();
+    setError('');
+    
+    if (formData.password !== formData.confirmarSenha) {
+      setError('As senhas não coincidem');
+      return;
     }
 
-    try {
-      setIsSubmitting(true)
-      console.log(' Iniciando registro para:', formData.email)
-      
-      // Chamar função de registro do contexto
-      await register(formData.name, formData.email, formData.password)
-      
-      // Redirecionar para login com indicador de sucesso
-      console.log(' Registro realizado com sucesso')
-      navigate('/login', { 
-        replace: true,
-        state: { registered: true } 
-      })
-    } catch (err) {
-      console.error(' Erro no registro:', err)
-      setError(err.message || 'Erro ao registrar conta. Tente novamente.')
-    } finally {
-      setIsSubmitting(false)
+    if (formData.password.length < 6) {
+      setError('A senha deve ter no mínimo 6 caracteres');
+      return;
     }
-  }
+
+    setLoading(true);
+
+    const result = await register(formData.nome, formData.email, formData.password);
+
+    if (result.success) {
+      navigate('/dashboard', { replace: true });
+    } else {
+      setError(result.error);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="register-container">
-      <div className="register-form">
+      <div className="register-box">
+        <h1>Sistema de Jiu-Jitsu</h1>
         <h2>Criar Conta</h2>
         
-        {/* Mensagem de erro */}
         {error && <div className="error-message">{error}</div>}
         
-        {/* Formulário */}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Nome Completo</label>
+            <label htmlFor="nome">Nome Completo</label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="nome"
+              name="nome"
+              value={formData.nome}
               onChange={handleChange}
-              disabled={isSubmitting}
               required
-              autoFocus
+              disabled={loading}
+              placeholder="Seu nome completo"
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -121,11 +118,12 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              disabled={isSubmitting}
               required
+              disabled={loading}
+              placeholder="seu@email.com"
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="password">Senha</label>
             <input
@@ -134,36 +132,35 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              disabled={isSubmitting}
-              minLength="6"
               required
+              disabled={loading}
+              placeholder="Mínimo 6 caracteres"
             />
           </div>
-          
+
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirmar Senha</label>
+            <label htmlFor="confirmarSenha">Confirmar Senha</label>
             <input
               type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
+              id="confirmarSenha"
+              name="confirmarSenha"
+              value={formData.confirmarSenha}
               onChange={handleChange}
-              disabled={isSubmitting}
               required
+              disabled={loading}
+              placeholder="Repita a senha"
             />
           </div>
-          
-          <button 
-            type="submit" 
-            className="register-button"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Registrando...' : 'Registrar'}
+
+          <button type="submit" className="btn-register" disabled={loading}>
+            {loading ? 'Registrando...' : 'Registrar'}
           </button>
         </form>
-        
-        <div className="login-link">
-          Já tem uma conta? <Link to="/login">Faça login</Link>
+
+        <div className="register-footer">
+          <p>
+            Já tem uma conta? <Link to="/login">Faça login</Link>
+          </p>
         </div>
       </div>
     </div>

@@ -44,23 +44,18 @@ export default defineConfig({
   server: {
     port: 3201,
     strictPort: false,
-    host: true, // Listen on all addresses, including LAN and public addresses
+    host: 'localhost',
     cors: true,
-    hmr: {
-      // host: '127.0.0.1', // Remove explicit host to allow automatic detection
-      port: 3201,
-      // clientPort: 3201, // Remove clientPort to allow automatic detection
-      overlay: true,
-      timeout: 30000
+    watch: {
+      usePolling: true
     },
-
+    hmr: false,
     proxy: {
       '/api': {
         target: 'http://localhost:3200',
         changeOrigin: true,
         secure: false,
-        ws: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        ws: true
       }
     }
   }

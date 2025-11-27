@@ -1,7 +1,10 @@
+import { AuthProvider } from './contexts/AuthContext'
 import AppRoutes from './routes'
 
-// Componente App simplificado sem AuthProvider
 export default function App() {
-  // Renderiza as rotas diretamente, sem contexto de autenticação
-  return <AppRoutes />
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
+  )
 }
