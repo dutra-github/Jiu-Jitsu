@@ -1,0 +1,23 @@
+{
+  "name": "Academia Jiu-Jitsu",
+  "short_name": "Jiu-Jitsu",
+  "description": "Sistema de gerenciamento para academias de Jiu-Jitsu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a73e8",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "pwa-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "masked-icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

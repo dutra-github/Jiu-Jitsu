@@ -1,0 +1,89 @@
+/* Arquivo de correção para remover informações de usuário e consertar alinhamento */
+
+/* Remove os elementos de usuário no topo direito */
+.user-info,
+.user-dropdown,
+.user-profile-menu,
+.user-menu {
+  display: none !important;
+}
+
+/* Remove qualquer elemento com "Usuário" no texto */
+*[title*="Usuário"],
+*[class*="usuario"],
+*[class*="user"],
+*[class*="login"],
+*[class*="auth"] {
+  display: none !important;
+}
+
+/* Garante que o cabeçalho não tenha elementos na direita ou esquerda */
+.header {
+  justify-content: center !important;
+  padding: 15px 0 !important;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-content {
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+/* Corrige problemas de alinhamento do menu */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  z-index: 100;
+  background-color: #1a2236;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+.main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Ajuste para botões no dashboard */
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.action-button {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}

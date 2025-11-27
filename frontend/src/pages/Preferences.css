@@ -1,0 +1,81 @@
+.preferences-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.preferences-container h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.activity-history {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.activity-history h2 {
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 50%;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-description {
+  color: #333;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.activity-date {
+  color: #666;
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .preferences-container {
+    padding: 1rem;
+  }
+  
+  .activity-history {
+    padding: 1rem;
+  }
+  
+  .activity-item {
+    padding: 0.75rem 0;
+  }
+}

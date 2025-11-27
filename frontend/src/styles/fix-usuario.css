@@ -1,0 +1,109 @@
+/* 
+  Arquivo CSS específico para remover informações de usuário e
+  corrigir alinhamento de menus
+*/
+
+/* Remover qualquer elemento de usuário no topo direito */
+[data-testid="user-info"],
+[class*="user-info"],
+[class*="user-profile"],
+[class*="usuario"],
+[class*="login"],
+[id*="user"],
+[id*="login"],
+.user-container,
+.usuario-container,
+.user-dropdown,
+.user-menu,
+.dropdown-user,
+.avatar-wrapper,
+.login-status {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Remover todos os links e botões de login/logout */
+a[href*="login"],
+a[href*="logout"],
+button[data-action*="login"],
+button[data-action*="logout"] {
+  display: none !important;
+}
+
+/* Limpar o cabeçalho e garantir que seja centralizado */
+.header {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 15px 20px !important;
+  position: relative;
+}
+
+.header::before,
+.header::after {
+  display: none !important;
+}
+
+.header-content {
+  width: 100% !important;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Corrigir alinhamento de menus */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 1000;
+  overflow-y: auto;
+  background-color: #1a2236;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Corrigir o conteúdo principal */
+.content-wrapper {
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  overflow-y: auto;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-250px);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
