@@ -17,10 +17,10 @@ const PORT = process.env.PORT || 3200;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3201', 'http://127.0.0.1:3201'],
+  origin: '*', // Permite qualquer origem
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: false // Desabilitar credentials quando origin é *
 }));
 app.use(express.json());
 
